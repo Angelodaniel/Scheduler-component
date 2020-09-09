@@ -52,12 +52,10 @@
 
     useEffect(() => {
       const { results = [], totalCount } = data || {};
-      console.log(results)
       setEventDate(results);
     }, [test]);
 
     const commitChanges = ({ added, changed, deleted }) => {
-      console.log(added, changed, deleted);
       let data = eventData;
       if (added) {
         const startingAddedId =
@@ -82,7 +80,6 @@
               object = { index: response.id, ...object };
               data = [...data, object];
               setEventDate(data);
-              debugger
             }
           });
       }
@@ -108,7 +105,6 @@
               })
             : appointment,
         );
-        debugger
         setEventDate(newdata);
       }
       if (deleted !== undefined) {
