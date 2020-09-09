@@ -75,6 +75,12 @@
           key: 'apiUrl',
           type: 'VARIABLE',
         },
+        {
+          value: [''],
+          label: 'Project ID',
+          key: 'projectId',
+          type: 'VARIABLE',
+        },
       ],
       descendants: [],
     },

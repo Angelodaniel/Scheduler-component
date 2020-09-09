@@ -22,7 +22,7 @@
       ConfirmationDialog,
       AllDayPanel,
     } = window.MUIScheduler;
-    const { useFilter, useGetAll } = B;
+    const { useFilter, useGetAll, useText } = B;
     const isDev = B.env === 'dev';
     const {
       filter,
@@ -32,7 +32,9 @@
       weekView,
       monthView,
       apiUrl,
+      projectId,
     } = options;
+    const projectValue = useText(projectId);
 
     const [eventData, setEventDate] = useState([]);
     let test = false;
@@ -50,6 +52,7 @@
 
     useEffect(() => {
       const { results = [], totalCount } = data || {};
+      console.log(results)
       setEventDate(results);
     }, [test]);
 
@@ -65,7 +68,11 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ type: 'Create', data: object }),
+          body: JSON.stringify({
+            type: 'Create',
+            data: object,
+            projectId: projectValue,
+          }),
         })
           .then(function(response) {
             return response.json();
@@ -75,6 +82,7 @@
               object = { index: response.id, ...object };
               data = [...data, object];
               setEventDate(data);
+              debugger
             }
           });
       }
@@ -100,6 +108,7 @@
               })
             : appointment,
         );
+        debugger
         setEventDate(newdata);
       }
       if (deleted !== undefined) {
@@ -156,6 +165,10 @@
   })(),
   styles: B => t => {
     const style = new B.Styling(t);
-    return {};
+    return {
+      appointmentContainer: {
+        backgroundColor: 'red',
+      },
+    };
   },
 }))();
