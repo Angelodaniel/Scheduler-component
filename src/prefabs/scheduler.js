@@ -22,6 +22,21 @@
           },
         },
         {
+          value: '',
+          label: 'Participant Model',
+          key: 'userModel',
+          type: 'MODEL',
+        },
+        {
+          value: {},
+          label: 'Participant Filter',
+          key: 'userFilter',
+          type: 'FILTER',
+          configuration: {
+            dependsOn: 'userModel',
+          },
+        },
+        {
           value: true,
           label: 'Toolbar Visibility',
           key: 'toolbarVisibility',
